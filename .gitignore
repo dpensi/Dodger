@@ -1,6 +1,9 @@
 # Import cache
 .import/
 
+# Text editor
+.vscode/
+
 # Binaries
 bin/
 build/
