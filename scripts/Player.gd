@@ -36,24 +36,11 @@ func move(delta):
 		
 		
 func animate():
-	$AnimatedSprite.animation = "up"
-	if direction.x != 0:
-		if direction.x > 0:
-			$AnimatedSprite.rotation_degrees = 90
-		else:
-			$AnimatedSprite.rotation_degrees = 270
-		# See the note below about boolean assignment
-		$AnimatedSprite.play()
-	elif direction.y != 0:
-		if direction.y > 0:
-			$AnimatedSprite.rotation_degrees = 180
-		else:
-			$AnimatedSprite.rotation_degrees = 0
-		$AnimatedSprite.play()
-	
+	$AnimatedSprite.animation = "walk"
+	$AnimatedSprite.play()
+	look_at(get_viewport().get_mouse_position())
 	if direction.x == 0 and direction.y == 0:
 		$AnimatedSprite.stop()
-
 
 func _on_Player_body_entered(_body):
 	hide()  # Player disappears after being hit.
