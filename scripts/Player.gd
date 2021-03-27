@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	direction = Vector2()
 	# hide()
-	get_input()
+	get_input() # sets input direction
 	move(delta)
 	animate()
 	

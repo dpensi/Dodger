@@ -42,16 +42,6 @@ position = Vector2( 56, -88 )
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -37.0
-margin_top = -152.763
-margin_right = 753.0
-margin_bottom = 676.237
-color = Color( 0.14902, 0.117647, 0.117647, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
