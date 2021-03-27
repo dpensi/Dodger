@@ -10,7 +10,7 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "up",
+"name": "run",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
@@ -24,15 +24,16 @@ radius = 26.8092
 height = 11.7169
 
 [node name="Player" type="Area2D"]
-position = Vector2( 177.995, 181.8 )
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "up"
+animation = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.263519, -0.790558 )
 shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

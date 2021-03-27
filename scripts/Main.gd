@@ -5,6 +5,7 @@ export (PackedScene) var Mob
 var score
 
 func _ready():
+	OS.set_window_size(Vector2(640, 480))
 	randomize()
 
 func _on_Player_hit():
