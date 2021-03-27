@@ -6,8 +6,6 @@ var score
 
 func _ready():
 	randomize()
-	new_game()
-
 
 func _on_Player_hit():
 	game_over()
@@ -22,7 +20,7 @@ func game_over():
 func new_game():
 	score = 0
 	$Music.play()
-	$Player.start($StartPosition.position)
+	$Player.start($PlayerSpawnPoint.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")

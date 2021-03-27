@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 56, -88, 0, 0, 0, 0, 536, -88, 0, 0, 0, 0, 536, 632, 0, 0, 0, 0, 56, 632, 0, 0, 0, 0, 56, -88 )
+"points": PoolVector2Array( 0, 0, 0, 0, 56, -88, 0, 0, 0, 0, 536, -88, 0, 0, 0, 0, 646.127, 269.112, 0, 0, 0, 0, 536, 632, 0, 0, 0, 0, 56, 632, 0, 0, 0, 0, 56, -88 )
 }
 
 [node name="Main" type="Node"]
@@ -17,11 +17,11 @@ script = ExtResource( 1 )
 Mob = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 340.139, 310.089 )
 z_index = 1
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
-one_shot = true
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -29,11 +29,12 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 240, 450 )
+[node name="PlayerSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 337.999, 305.674 )
 
 [node name="MobPath" type="Path2D" parent="."]
-position = Vector2( -56, 88 )
+position = Vector2( -61.1969, 58.8181 )
+scale = Vector2( 1.0928, 0.668388 )
 curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
@@ -42,8 +43,10 @@ position = Vector2( 56, -88 )
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 480.0
-margin_bottom = 720.0
+margin_left = -37.0
+margin_top = -152.763
+margin_right = 753.0
+margin_bottom = 676.237
 color = Color( 0.14902, 0.117647, 0.117647, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
