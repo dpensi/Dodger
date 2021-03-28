@@ -67,10 +67,9 @@ func animate():
 		$AnimatedSprite.stop()
 
 func point_at_cursor(mouse_position):
-	var mouse_relative_position = Vector2(
-		mouse_position.x - position.x, 
-		mouse_position.y - position.y
-	)
+	var translation_vector = mouse_position - Vector2(get_viewport().size.x/2, get_viewport().size.y/2)
+	rotation = (translation_vector).angle()
+
 
 func _on_Player_body_entered(_body):
 	hide()  # Player disappears after being hit.
