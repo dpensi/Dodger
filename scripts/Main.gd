@@ -1,7 +1,7 @@
 extends Node
 
 export (PackedScene) var Mob
-
+export (PackedScene) var Player
 var score
 
 func _ready():
@@ -21,10 +21,15 @@ func game_over():
 func new_game():
 	score = 0
 	$Music.play()
-	$Player.start($PlayerSpawnPoint.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+
+	# instantiate player
+	var player = Player.instance()
+	add_child(player)
+	player.connect("hit", self, "_on_Player_hit")
+	player.start($PlayerSpawnPoint.position)
 
 
 func _on_MobTimer_timeout():

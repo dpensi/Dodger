@@ -15,9 +15,7 @@ _data = {
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 Mob = ExtResource( 3 )
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-z_index = 1
+Player = ExtResource( 2 )
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -37,7 +35,7 @@ curve = SubResource( 1 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2( -290.237, -360.449 )
-rotation = 0.00787141
+rotation = 0.00787147
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
@@ -46,7 +44,6 @@ stream = ExtResource( 5 )
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
