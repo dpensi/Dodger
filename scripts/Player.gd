@@ -1,4 +1,4 @@
-extends Area2D 
+extends KinematicBody2D 
 
 signal hit
 
@@ -6,20 +6,17 @@ export var ZoomSpeed = 0.2
 export var MinZoom = 0.5
 export var MaxZoom = 2.5
 export var speed = 400  # How fast the player will move (pixels/sec).
+export(PackedScene) var ControllerRef
 
 onready var camera = get_node("Camera2D")
-
+onready var Controller = ControllerRef.instance()
 var screen_size  # Size of the game window.
-var direction= Vector2()
-var mouse_position
-var wheel_down 
-var wheel_up
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	
-func _process(delta):
-	direction = Vector2()
+func _physics_process(delta):
+	
 	get_input() # sets input direction
 	move(delta)
 	animate()
@@ -30,28 +27,32 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	
 func get_input():
-	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	Controller.direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	Controller.direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
-	if direction.length() > 0:
-		direction = direction.normalized() * speed
+	if Controller.direction.length() > 0:
+		Controller.direction = Controller.direction.normalized() * speed
 	
-	mouse_position = get_viewport().get_mouse_position()
-	wheel_down = Input.is_action_just_released("ui_zoom_in")
-	wheel_up = Input.is_action_just_released("ui_zoom_out")
+	Controller.mouse_position = get_viewport().get_mouse_position()
+	Controller.wheel_down = Input.is_action_just_released("ui_zoom_in")
+	Controller.wheel_up = Input.is_action_just_released("ui_zoom_out")
 	
 	
 func move(delta):
-	position += direction * delta
-	point_at_cursor(mouse_position)
+	var collision = move_and_collide(
+		(Controller.direction.normalized() * speed) * delta
+	)
+	if collision:
+		print("I collided with ", collision.collider.name)
+	point_at_cursor()
 	zoom()
 
 
 func zoom():
-	if wheel_down: # zoom in 
+	if Controller.wheel_down: # zoom in 
 		camera.zoom.x -= ZoomSpeed
 		camera.zoom.y -= ZoomSpeed
-	if wheel_up: # zoom out
+	if Controller.wheel_up: # zoom out
 		camera.zoom.x += ZoomSpeed
 		camera.zoom.y += ZoomSpeed
 	
@@ -63,11 +64,11 @@ func zoom():
 func animate():
 	$AnimatedSprite.animation = "walk"
 	$AnimatedSprite.play()
-	if direction.x == 0 and direction.y == 0:
+	if Controller.direction.x == 0 and Controller.direction.y == 0:
 		$AnimatedSprite.stop()
 
-func point_at_cursor(mouse_position):
-	var translation_vector = mouse_position - Vector2(get_viewport().size.x/2, get_viewport().size.y/2)
+func point_at_cursor():
+	var translation_vector = Controller.mouse_position - Vector2(get_viewport().size.x/2, get_viewport().size.y/2)
 	rotation = (translation_vector).angle()
 
 
