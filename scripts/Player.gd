@@ -17,7 +17,7 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	get_input() # sets input direction
+	Controller.get_input(get_viewport()) # sets input direction
 	move(delta)
 	animate()
 	
@@ -25,19 +25,7 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-	
-func get_input():
-	Controller.direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	Controller.direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
-	if Controller.direction.length() > 0:
-		Controller.direction = Controller.direction.normalized() * speed
-	
-	Controller.mouse_position = get_viewport().get_mouse_position()
-	Controller.wheel_down = Input.is_action_just_released("ui_zoom_in")
-	Controller.wheel_up = Input.is_action_just_released("ui_zoom_out")
-	
-	
+		
 func move(delta):
 	var collision = move_and_collide(
 		(Controller.direction.normalized() * speed) * delta
