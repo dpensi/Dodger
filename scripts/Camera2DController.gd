@@ -12,5 +12,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x = player.position.x
-	position.y = player.position.y
+	position.x = delta * player.position.x
+	position.y = delta * player.position.y
