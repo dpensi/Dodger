@@ -7,17 +7,24 @@ export var MinZoom = 0.5
 export var MaxZoom = 2.5
 export var speed = 400  # How fast the player will move (pixels/sec).
 export(PackedScene) var ControllerRef
+export(PackedScene) var CameraRef
 
-onready var camera = get_node("Camera2D")
 onready var Controller = ControllerRef.instance()
+
 var screen_size  # Size of the game window.
+var camera = null
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	add_child(Controller)
+	if CameraRef != null:
+		camera = CameraRef.instance() 
+		camera.make_current()
+		add_child(camera)
 	
+		
 func _physics_process(delta):
-	
-	Controller.get_input(get_viewport()) # sets input direction
+	Controller.get_input() # sets input direction
 	move(delta)
 	animate()
 	
@@ -31,9 +38,12 @@ func move(delta):
 		(Controller.direction.normalized() * speed) * delta
 	)
 	if collision:
-		print("I collided with ", collision.collider.name)
-	point_at_cursor()
-	zoom()
+		pass
+	#point_at_cursor()
+	look_at(Controller.points_to)
+	
+	if camera != null:
+		zoom()
 
 
 func zoom():
@@ -55,9 +65,6 @@ func animate():
 	if Controller.direction.x == 0 and Controller.direction.y == 0:
 		$AnimatedSprite.stop()
 
-func point_at_cursor():
-	var translation_vector = Controller.mouse_position - Vector2(get_viewport().size.x/2, get_viewport().size.y/2)
-	rotation = (translation_vector).angle()
 
 
 func _on_Player_body_entered(_body):
