@@ -24,7 +24,7 @@ func _ready():
 	
 		
 func _physics_process(delta):
-	Controller.get_input() # sets input direction
+	Controller.get_input(delta) # sets input direction
 	move(delta)
 	animate()
 	
@@ -34,7 +34,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 		
 func move(delta):
-	var collision = move_and_collide(
+	var collision = move_and_slide(
 		(Controller.direction.normalized() * speed) * delta
 	)
 	if collision:

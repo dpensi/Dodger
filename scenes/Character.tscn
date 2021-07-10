@@ -27,7 +27,7 @@ height = 11.7169
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 5 )
-speed = 500
+speed = 35000
 ControllerRef = ExtResource( 6 )
 CameraRef = ExtResource( 7 )
 
