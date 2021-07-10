@@ -1,7 +1,6 @@
 extends Node
 
 var direction = Vector2()
-var mouse_position
 var wheel_down 
 var wheel_up
 var points_to
@@ -9,5 +8,5 @@ var points_to
 func _ready():
 	pass
 
-func get_input():
+func get_input(_delta):
 	push_error("AbstractController.get_input(): not implemented")
