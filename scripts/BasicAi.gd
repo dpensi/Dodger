@@ -10,7 +10,12 @@ func _ready():
 	get_tree().root.get_child(0).call_deferred("add_child", patrol_inst)
 	patrol_follow = patrol_inst.get_child(0)
 
-func get_input(_delta):
-	direction = ( patrol_follow.position - get_parent().position ).normalized()
+func think(_delta):
+	direction = ( patrol_follow.position - character.position ).normalized()
 	points_to = patrol_follow.position
-	patrol_follow.set_offset(patrol_follow.get_offset() + OffsetJump)
+	
+	if character.position.distance_to(patrol_follow.position) < 50:
+		patrol_follow.offset += OffsetJump
+
+func do():
+	character.walk()

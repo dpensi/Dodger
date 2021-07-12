@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Controllers/BasicAi.tscn" type="PackedScene" id=5]
-[ext_resource path="res://dodge_assets/art/gameover.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/MobPath.tscn" type="PackedScene" id=8]
 
@@ -14,29 +12,16 @@ script = ExtResource( 1 )
 Mob = ExtResource( 3 )
 Player = ExtResource( 2 )
 
-[node name="ScoreTimer" type="Timer" parent="."]
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="PlayerSpawnPoint" type="Position2D" parent="."]
-
-[node name="HUD" parent="." instance=ExtResource( 4 )]
-
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-
 [node name="Wall" parent="." instance=ExtResource( 7 )]
 position = Vector2( -6.97198, 112.898 )
 
 [node name="Npc" parent="." instance=ExtResource( 2 )]
-position = Vector2( 177.99, -129.255 )
+position = Vector2( 113.918, -118.576 )
 ControllerRef = ExtResource( 5 )
 CameraRef = null
 
 [node name="MobPath" parent="." instance=ExtResource( 8 )]
+position = Vector2( -71.6788, 43.6217 )
+scale = Vector2( 0.605762, 0.315449 )
 
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
-[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
+[node name="Player" parent="." instance=ExtResource( 2 )]

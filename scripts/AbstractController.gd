@@ -5,6 +5,8 @@ var wheel_down
 var wheel_up
 var points_to
 
+onready var character = get_parent()
+
 func _ready():
 	pass
 

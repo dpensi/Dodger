@@ -24,12 +24,6 @@ func new_game():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
-	
-	player = Player.instance()
-	add_child(player)
-	player.connect("hit", self, "_on_Player_hit")
-	player.hide()
-	player.start($PlayerSpawnPoint.position)
 
 func _on_ScoreTimer_timeout():
 	score += 1

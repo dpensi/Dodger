@@ -2,10 +2,10 @@ extends KinematicBody2D
 
 signal hit
 
-export var ZoomSpeed = 0.2
-export var MinZoom = 0.5
-export var MaxZoom = 2.5
-export var speed = 400  # How fast the player will move (pixels/sec).
+export var WalkSpeed = 200
+export var WalkAcceleration = 0.2
+export var RunSpeed = 500
+export var RunAcceleration = 0.3 
 export(PackedScene) var ControllerRef
 export(PackedScene) var CameraRef
 
@@ -13,6 +13,7 @@ onready var Controller = ControllerRef.instance()
 
 var screen_size  # Size of the game window.
 var camera = null
+var velocity = Vector2.ZERO
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -22,43 +23,33 @@ func _ready():
 		camera.make_current()
 		add_child(camera)
 	
-		
+func _process(_delta):
+	animate()	
+
 func _physics_process(delta):
-	Controller.get_input(delta) # sets input direction
-	move(delta)
-	animate()
+	Controller.think(delta) # sets input direction
+	Controller.do()
 	
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
-		
-func move(delta):
-	var collision = move_and_slide(
-		(Controller.direction.normalized() * speed) * delta
-	)
-	if collision:
-		pass
-	#point_at_cursor()
-	look_at(Controller.points_to)
-	
-	if camera != null:
-		zoom()
+
+func run():
+	velocity = lerp(velocity, Controller.direction.normalized() * RunSpeed, RunAcceleration)
+	velocity = move_and_slide(velocity)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		print("I ran into ", collision.collider.name)
 
 
-func zoom():
-	if Controller.wheel_down: # zoom in 
-		camera.zoom.x -= ZoomSpeed
-		camera.zoom.y -= ZoomSpeed
-	if Controller.wheel_up: # zoom out
-		camera.zoom.x += ZoomSpeed
-		camera.zoom.y += ZoomSpeed
-	
-	camera.zoom.x = clamp(camera.zoom.x, MinZoom, MaxZoom)
-	camera.zoom.y = clamp(camera.zoom.y, MinZoom, MaxZoom)
+func walk():
+	velocity = lerp(velocity, Controller.direction.normalized() * WalkSpeed, WalkAcceleration)
+	velocity = move_and_slide(velocity)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		print("I walked into ", collision.collider.name)
 
-		
-		
 func animate():
 	$AnimatedSprite.animation = "walk"
 	$AnimatedSprite.play()
@@ -71,3 +62,9 @@ func _on_Player_body_entered(_body):
 	hide()  # Player disappears after being hit.
 	emit_signal("hit")
 	$CollisionShape2D.set_deferred("disabled", true)
+
+
+# force collision detection during rotation
+# func _physics_process(delta):
+#     rotation += delta
+#     move_and_collide(Vector2.ZERO)
