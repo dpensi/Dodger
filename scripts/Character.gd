@@ -63,6 +63,11 @@ func _on_Player_body_entered(_body):
 	emit_signal("hit")
 	$CollisionShape2D.set_deferred("disabled", true)
 
+func _on_FieldOfView_body_entered(body):
+	print("i can see ", body.name)
+
+func _on_FieldOfView_body_exited(body):
+	print("can't see ", body.name, " anymore")
 
 # force collision detection during rotation
 # func _physics_process(delta):

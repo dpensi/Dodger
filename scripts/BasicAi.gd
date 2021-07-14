@@ -19,3 +19,4 @@ func think(_delta):
 
 func do():
 	character.walk()
+	character.look_at(patrol_follow.position)
