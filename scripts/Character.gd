@@ -1,7 +1,5 @@
 extends KinematicBody2D 
 
-signal hit
-
 export var WalkSpeed = 200
 export var WalkAcceleration = 0.2
 export var RunSpeed = 500
@@ -39,29 +37,25 @@ func run():
 	velocity = lerp(velocity, Controller.direction.normalized() * RunSpeed, RunAcceleration)
 	velocity = move_and_slide(velocity)
 	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		print("I ran into ", collision.collider.name)
+		var _collision = get_slide_collision(i)
+		#print("I ran into ", collision.collider.name)
 
 
 func walk():
 	velocity = lerp(velocity, Controller.direction.normalized() * WalkSpeed, WalkAcceleration)
 	velocity = move_and_slide(velocity)
 	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		print("I walked into ", collision.collider.name)
+		var _collision = get_slide_collision(i)
+		# print("I walked into ", collision.collider.name)
+
+func wait():
+	pass
 
 func animate():
 	$AnimatedSprite.animation = "walk"
 	$AnimatedSprite.play()
 	if Controller.direction.x == 0 and Controller.direction.y == 0:
 		$AnimatedSprite.stop()
-
-
-
-func _on_Player_body_entered(_body):
-	hide()  # Player disappears after being hit.
-	emit_signal("hit")
-	$CollisionShape2D.set_deferred("disabled", true)
 
 func _on_FieldOfView_body_entered(body):
 	print("i can see ", body.name)
