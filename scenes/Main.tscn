@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Controllers/BasicAi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/MobPath.tscn" type="PackedScene" id=8]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -19,9 +18,5 @@ position = Vector2( -6.97198, 112.898 )
 position = Vector2( 113.918, -118.576 )
 ControllerRef = ExtResource( 5 )
 CameraRef = null
-
-[node name="MobPath" parent="." instance=ExtResource( 8 )]
-position = Vector2( -71.6788, 43.6217 )
-scale = Vector2( 0.605762, 0.315449 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
