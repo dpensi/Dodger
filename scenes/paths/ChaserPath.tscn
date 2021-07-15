@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 197.01, 328.96, 0, 0, 0, 0, -489.097, 312.942, 0, 0, 0, 0, -507.785, -335.79, 0, 0, 0, 0, 637.507, -333.121, 0, 0, 0, 0, 642.846, 347.647, 0, 0, 0, 0, 439.951, 328.96, 0, 0, 0, 0, 325.154, 331.629, 0, 0, 0, 0, 202.349, 328.96 )
+}
+
+[node name="ChaserPath" type="Path2D"]
+curve = SubResource( 1 )
+
+[node name="ChaserPatrol" type="PathFollow2D" parent="."]
+position = Vector2( 197.01, 328.96 )
+rotation = -3.11825

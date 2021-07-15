@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Controllers/BasicAi.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/controllers/ChaseAi.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/controllers/BasicAi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node"]
@@ -20,3 +21,9 @@ ControllerRef = ExtResource( 5 )
 CameraRef = null
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+
+[node name="Chaser" parent="." instance=ExtResource( 2 )]
+position = Vector2( 20.225, 266.742 )
+rotation = 0.944223
+ControllerRef = ExtResource( 4 )
+CameraRef = null

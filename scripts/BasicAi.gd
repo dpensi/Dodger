@@ -1,7 +1,6 @@
 extends "res://scripts/AbstractController.gd"
 
 export(PackedScene) var Patrol 
-export(int) var WalkSpeed = 200
 export(int) var OffsetJump = 10
 
 var patrol_follow : PathFollow2D
