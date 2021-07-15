@@ -9,3 +9,5 @@ _data = {
 curve = SubResource( 1 )
 
 [node name="ChaserPatrol" type="PathFollow2D" parent="."]
+position = Vector2( 197.01, 328.96 )
+rotation = -3.11825

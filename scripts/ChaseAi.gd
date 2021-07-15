@@ -1,6 +1,6 @@
 extends "res://scripts/BasicAi.gd"
 
-var can_chase # TODO: not a single body but a list of body!
+var bodies_in_view = []
 export var FollowingDistance = 250
 
 func _ready():
@@ -10,29 +10,29 @@ func _ready():
 
 
 func think(_delta):
-	if not can_chase:
+	if not bodies_in_view:
 		.think(_delta)
 	else:
-		direction = ( can_chase.position - character.position ).normalized()
-		points_to = can_chase.position
+		direction = ( bodies_in_view[0].position - character.position ).normalized()
+		points_to = bodies_in_view[0].position
 	
 func do():
-	if can_chase: 
-		print(character.position.distance_to(can_chase.position))
-	if not can_chase:
+	if not bodies_in_view:
 		.do()
-	elif character.position.distance_to(can_chase.position) > FollowingDistance:
+	elif character.position.distance_to(bodies_in_view[0].position) > FollowingDistance:
 		character.run()
-		character.look_at(can_chase.position)
+		character.look_at(bodies_in_view[0].position)
 	else:
 		character.wait()
-		character.look_at(can_chase.position)
+		character.look_at(bodies_in_view[0].position)
 
 func _on_FieldOfView_body_entered(body):
-	print("ready to chase") 
-	can_chase = body
-	print(body.name)
+	if body == character: 
+		return # don't chase yourself
+	
+	bodies_in_view.append(body)
+	print("I can see: ", bodies_in_view)
 
-func _on_FieldOfView_body_exited(_body):
-	print("nothing to chase")
-	can_chase = null
+func _on_FieldOfView_body_exited(body):
+	bodies_in_view.erase(body)
+	print("I can see: ", bodies_in_view)

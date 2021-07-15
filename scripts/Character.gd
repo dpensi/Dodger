@@ -36,26 +36,21 @@ func start(pos):
 func run():
 	velocity = lerp(velocity, Controller.direction.normalized() * RunSpeed, RunAcceleration)
 	velocity = move_and_slide(velocity)
-	for i in get_slide_count():
-		var _collision = get_slide_collision(i)
-		#print("I ran into ", collision.collider.name)
-
 
 func walk():
 	velocity = lerp(velocity, Controller.direction.normalized() * WalkSpeed, WalkAcceleration)
 	velocity = move_and_slide(velocity)
-	for i in get_slide_count():
-		var _collision = get_slide_collision(i)
-		# print("I walked into ", collision.collider.name)
 
 func wait():
-	pass
+	velocity = lerp(velocity, Vector2.ZERO, WalkAcceleration) # stop gracefully
+	velocity = move_and_slide(velocity)
 
 func animate():
 	$AnimatedSprite.animation = "walk"
-	$AnimatedSprite.play()
-	if Controller.direction.x == 0 and Controller.direction.y == 0:
+	if Vector2(-0.2,-0.2) < velocity and velocity <= Vector2(0.2,0.2):
 		$AnimatedSprite.stop()
+	else:
+		$AnimatedSprite.play()
 
 func _on_FieldOfView_body_entered(body):
 	print("i can see ", body.name)

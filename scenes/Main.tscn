@@ -23,7 +23,7 @@ CameraRef = null
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Chaser" parent="." instance=ExtResource( 2 )]
-position = Vector2( 96.1084, 226.923 )
-rotation = 1.08036
+position = Vector2( 20.225, 266.742 )
+rotation = 0.944223
 ControllerRef = ExtResource( 4 )
 CameraRef = null
