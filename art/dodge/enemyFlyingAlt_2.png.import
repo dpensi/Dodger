@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerGrey_walk1.png-c4773fe7a7bf85d7ab732eb4458c2742.stex"
+path="res://.import/enemyFlyingAlt_2.png-aa964ef7f4a588171cc1f4ac42300d42.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/playerGrey_walk1.png"
-dest_files=[ "res://.import/playerGrey_walk1.png-c4773fe7a7bf85d7ab732eb4458c2742.stex" ]
+source_file="res://art/dodge/enemyFlyingAlt_2.png"
+dest_files=[ "res://.import/enemyFlyingAlt_2.png-aa964ef7f4a588171cc1f4ac42300d42.stex" ]
 
 [params]
 
