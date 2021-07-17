@@ -1,4 +1,4 @@
-extends "res://scripts/AbstractController.gd"
+extends "res://controllers/AbstractController.gd"
 
 func think(_delta):
 	pass
