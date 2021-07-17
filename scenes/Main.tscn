@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
@@ -6,6 +6,16 @@
 [ext_resource path="res://scenes/controllers/ChaseAi.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/controllers/BasicAi.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 307.519, 51.5175, 0, 0, 0, 0, 164.814, 527.2, 0, 0, 0, 0, 535.847, 536.714, 0, 0, 0, 0, 559.631, 313.143 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -219.988, 1583.91, 0, 0, 0, 0, -759.988, 1377.91 )
+}
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -15,15 +25,92 @@ Player = ExtResource( 2 )
 [node name="Wall" parent="." instance=ExtResource( 7 )]
 position = Vector2( -6.97198, 112.898 )
 
+[node name="Chaser" parent="." instance=ExtResource( 2 )]
+position = Vector2( -556.549, 1721.97 )
+ControllerRef = ExtResource( 4 )
+CameraRef = null
+Patrol = NodePath("../ChaserPath")
+
 [node name="Npc" parent="." instance=ExtResource( 2 )]
 position = Vector2( 113.918, -118.576 )
 ControllerRef = ExtResource( 5 )
 CameraRef = null
+Patrol = NodePath("../NpcPath")
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="Chaser" parent="." instance=ExtResource( 2 )]
-position = Vector2( 20.225, 266.742 )
-rotation = 0.944223
-ControllerRef = ExtResource( 4 )
-CameraRef = null
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall2" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -958.415, 68.4102 )
+rotation = 1.5708
+scale = Vector2( 2.885, 1 )
+
+[node name="Wall3" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 563.302, 699.456 )
+scale = Vector2( 1.766, 1 )
+
+[node name="Wall4" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 912.059, 91.5961 )
+rotation = 1.5708
+scale = Vector2( 2.978, 1 )
+
+[node name="Wall7" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -107.137, 985.076 )
+rotation = 1.5708
+scale = Vector2( 1.323, 1 )
+
+[node name="Wall8" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 216.132, 958.137 )
+rotation = 1.5708
+scale = Vector2( 1.323, 1 )
+
+[node name="Wall5" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -18.6877, -525.927 )
+scale = Vector2( 4.322, 1 )
+
+[node name="Wall6" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -536.606, 680.768 )
+scale = Vector2( 2.127, 1 )
+
+[node name="Wall9" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -907.561, 1886.45 )
+rotation = 1.5708
+scale = Vector2( 2.885, 1 )
+
+[node name="Wall14" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -105.529, 1470.89 )
+rotation = 1.5708
+scale = Vector2( 0.868, 1 )
+
+[node name="Wall10" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 590.184, 1270.9 )
+scale = Vector2( 1.766, 1 )
+
+[node name="Wall11" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( 962.913, 1909.63 )
+rotation = 1.5708
+scale = Vector2( 2.978, 1 )
+
+[node name="Wall12" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -9.78613, 2520.72 )
+scale = Vector2( 4.322, 1 )
+
+[node name="Wall13" parent="Walls" instance=ExtResource( 7 )]
+position = Vector2( -533.697, 1258.21 )
+scale = Vector2( 2.127, 1 )
+
+[node name="NpcPath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="NpcPatrol" type="PathFollow2D" parent="NpcPath"]
+position = Vector2( 307.519, 51.5175 )
+rotation = 1.86226
+
+[node name="ChaserPath" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="ChaserPatrol" type="PathFollow2D" parent="ChaserPath"]
+position = Vector2( -235.989, 1457.91 )
+rotation = 3.1339
+offset = 0.00286865

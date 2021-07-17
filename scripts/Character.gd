@@ -6,9 +6,11 @@ export var RunSpeed = 500
 export var RunAcceleration = 0.3 
 export(PackedScene) var ControllerRef
 export(PackedScene) var CameraRef
+export(NodePath) var Patrol
 
 onready var Controller = ControllerRef.instance()
 
+var patrol_follow
 var screen_size  # Size of the game window.
 var camera = null
 var velocity = Vector2.ZERO
@@ -20,6 +22,8 @@ func _ready():
 		camera = CameraRef.instance() 
 		camera.make_current()
 		add_child(camera)
+	if Patrol:
+		patrol_follow = get_node(Patrol).get_child(0)
 	
 func _process(_delta):
 	animate()	
@@ -52,11 +56,13 @@ func animate():
 	else:
 		$AnimatedSprite.play()
 
-func _on_FieldOfView_body_entered(body):
-	print("i can see ", body.name)
+func _on_FieldOfView_body_entered(_body):
+	# print("i can see ", body.name)
+	pass
 
-func _on_FieldOfView_body_exited(body):
-	print("can't see ", body.name, " anymore")
+func _on_FieldOfView_body_exited(_body):
+	# print("can't see ", body.name, " anymore")
+	pass
 
 # force collision detection during rotation
 # func _physics_process(delta):

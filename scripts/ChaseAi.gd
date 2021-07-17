@@ -1,7 +1,10 @@
 extends "res://scripts/BasicAi.gd"
 
-var bodies_in_view = []
 export var FollowingDistance = 250
+export var BlinkTime = 0.5
+
+var bodies_in_area = [] # bodies in area2d
+var bodies_in_view = [] # bodies that I can actually see
 
 func _ready():
 	._ready()
@@ -29,10 +32,21 @@ func do():
 func _on_FieldOfView_body_entered(body):
 	if body == character: 
 		return # don't chase yourself
-	
-	bodies_in_view.append(body)
-	print("I can see: ", bodies_in_view)
+	bodies_in_area.append(body)
+
 
 func _on_FieldOfView_body_exited(body):
+	bodies_in_area.erase(body)
 	bodies_in_view.erase(body)
-	print("I can see: ", bodies_in_view)
+
+func _on_Blink_timeout():
+	for body in bodies_in_area:
+		var dss = character.get_world_2d().direct_space_state 
+		var intersection = dss.intersect_ray(
+				character.position, body.position, [character])
+		if not intersection.collider.is_in_group("buildings"):
+			if not bodies_in_view.has(body):
+				bodies_in_view.append(body)
+		else:
+			bodies_in_view.erase(body)
+	print("bodies in view: ", bodies_in_view) 
