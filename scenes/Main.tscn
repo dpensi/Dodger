@@ -1,25 +1,85 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/controllers/ChaseAi.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/controllers/BasicAi.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Main.gd" type="Script" id=1]
+[ext_resource path="res://characters/Character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://controllers/ChaseAi.tscn" type="PackedScene" id=4]
+[ext_resource path="res://controllers/BasicAi.tscn" type="PackedScene" id=5]
+[ext_resource path="res://art/enemyFlyingAlt_2.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Wall.tscn" type="PackedScene" id=7]
+[ext_resource path="res://art/enemySwimming_1.png" type="Texture" id=8]
+[ext_resource path="res://art/enemySwimming_2.png" type="Texture" id=9]
+[ext_resource path="res://art/enemyFlyingAlt_1.png" type="Texture" id=10]
+[ext_resource path="res://art/enemyWalking_1.png" type="Texture" id=11]
+[ext_resource path="res://art/enemyWalking_2.png" type="Texture" id=12]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="GDScript" id=6]
+script/source = "extends RigidBody2D
+
+export var min_speed = 150  # Minimum speed range.
+export var max_speed = 250  # Maximum speed range.
+
+
+func _ready():
+	var mob_types = $AnimatedSprite.frames.get_animation_names()
+	$AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
+	$AnimatedSprite.play()
+
+
+#func _process(delta):
+#	pass
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
+"
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "walk",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "swim",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "fly",
+"speed": 3.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 30.7444
+height = 45.7859
+
+[sub_resource type="PackedScene" id=3]
+_bundled = {
+"conn_count": 0,
+"conns": PoolIntArray(  ),
+"editable_instances": [  ],
+"names": PoolStringArray( "Mob", "RigidBody2D", "mobs", "position", "collision_mask", "gravity_scale", "script", "AnimatedSprite", "AnimatedSprite", "scale", "frames", "animation", "frame", "playing", "CollisionShape2D", "CollisionShape2D", "position", "shape", "VisibilityNotifier2D", "VisibilityNotifier2D", "position" ),
+"node_count": 4,
+"node_paths": [ NodePath("."), NodePath("."), NodePath(".") ],
+"nodes": PoolIntArray( -1, -1, 1, 0, -1, 4, 3, 0, 4, 1, 5, 2, 6, 3, 1, 2, 1073741824, 0, 8, 7, -1, 5, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 0, 1073741825, 0, 15, 14, -1, 2, 16, 9, 17, 10, 0, 1073741826, 0, 19, 18, -1, 1, 20, 11, 0 ),
+"variants": [ Vector2( 260.573, 419.408 ), 0, 0.0, SubResource( 6 ), Vector2( 0.75, 0.75 ), SubResource( 1 ), "fly", 1, true, Vector2( -3.0874, 0.686134 ), SubResource( 2 ), Vector2( 0.37735, 0.37735 ) ],
+"version": 2
+}
+
+[sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 307.519, 51.5175, 0, 0, 0, 0, 164.814, 527.2, 0, 0, 0, 0, 535.847, 536.714, 0, 0, 0, 0, 559.631, 313.143 )
 }
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=5]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -219.988, 1583.91, 0, 0, 0, 0, -759.988, 1377.91 )
 }
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-Mob = ExtResource( 3 )
+Mob = SubResource( 3 )
 Player = ExtResource( 2 )
 
 [node name="Wall" parent="." instance=ExtResource( 7 )]
@@ -101,16 +161,16 @@ position = Vector2( -533.697, 1258.21 )
 scale = Vector2( 2.127, 1 )
 
 [node name="NpcPath" type="Path2D" parent="."]
-curve = SubResource( 1 )
+curve = SubResource( 4 )
 
 [node name="NpcPatrol" type="PathFollow2D" parent="NpcPath"]
 position = Vector2( 307.519, 51.5175 )
 rotation = 1.86226
 
 [node name="ChaserPath" type="Path2D" parent="."]
-curve = SubResource( 2 )
+curve = SubResource( 5 )
 
 [node name="ChaserPatrol" type="PathFollow2D" parent="ChaserPath"]
-position = Vector2( -235.989, 1457.91 )
-rotation = 3.1339
+position = Vector2( -219.989, 1583.91 )
+rotation = -2.77712
 offset = 0.00286865
