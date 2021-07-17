@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wall-cropped.png-6da90d464595391900bcd7fefded9af0.stex"
+path="res://.import/enemyWalking_1.png-155868ed9ecf12472da5f96dbd197bf1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/wall-cropped.png"
-dest_files=[ "res://.import/wall-cropped.png-6da90d464595391900bcd7fefded9af0.stex" ]
+source_file="res://art/dodge/enemyWalking_1.png"
+dest_files=[ "res://.import/enemyWalking_1.png-155868ed9ecf12472da5f96dbd197bf1.stex" ]
 
 [params]
 

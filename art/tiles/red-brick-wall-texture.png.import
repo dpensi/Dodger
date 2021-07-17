@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerGrey_up2.png-d6aba85f5f2675ebc7045efa7552ee79.stex"
+path="res://.import/red-brick-wall-texture.png-9ff2823f2f2e34f0a6e99699267c0cba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/playerGrey_up2.png"
-dest_files=[ "res://.import/playerGrey_up2.png-d6aba85f5f2675ebc7045efa7552ee79.stex" ]
+source_file="res://art/tiles/red-brick-wall-texture.png"
+dest_files=[ "res://.import/red-brick-wall-texture.png-9ff2823f2f2e34f0a6e99699267c0cba.stex" ]
 
 [params]
 
