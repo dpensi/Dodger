@@ -6,5 +6,5 @@ func _ready():
 		"on_HumanController_toggle_inventory")
 
 func on_HumanController_toggle_inventory():
-	for bp in $"InventoryLayer".get_children():
+	for bp in $InventoryLayer.get_children():
 		bp.visible = not bp.visible

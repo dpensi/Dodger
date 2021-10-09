@@ -1,5 +1,9 @@
 class_name Utils
 
+const FLOAT_EPSILON = 0.01
+
+static func equals_float(a, b, epsilon = FLOAT_EPSILON):
+	return abs(a - b) <= epsilon
 
 func vector2_average(vectors):
 	var sum_x = 0

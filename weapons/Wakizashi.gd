@@ -2,7 +2,7 @@ extends RigidBody2D
 
 # the character who's holding the weapon
 var holder
-var item_id = "Wakizashi"
+var item_id = "wakizashi"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
