@@ -9,6 +9,9 @@ export(PackedScene) var CameraRef
 export(NodePath) var Patrol
 
 onready var Controller = ControllerRef.instance()
+onready var Inventory = get_node("Inventory")
+onready var Equipped = get_node("Equipped")
+onready var InteractionArea = get_node("InteractionArea")
 
 var patrol_follow
 var screen_size  # Size of the game window.

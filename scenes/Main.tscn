@@ -1,87 +1,17 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://cameras/LookAheadCamera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://controllers/ChaseAi.tscn" type="PackedScene" id=4]
-[ext_resource path="res://controllers/BasicAi.tscn" type="PackedScene" id=5]
-[ext_resource path="res://art/dodge/enemyFlyingAlt_2.png" type="Texture" id=6]
-[ext_resource path="res://art/dodge/enemySwimming_1.png" type="Texture" id=8]
-[ext_resource path="res://art/dodge/enemySwimming_2.png" type="Texture" id=9]
-[ext_resource path="res://art/dodge/enemyFlyingAlt_1.png" type="Texture" id=10]
-[ext_resource path="res://art/dodge/enemyWalking_1.png" type="Texture" id=11]
-[ext_resource path="res://art/dodge/enemyWalking_2.png" type="Texture" id=12]
+[ext_resource path="res://Backpack/Slot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Backpack/BpView.tscn" type="PackedScene" id=5]
+[ext_resource path="res://weapons/Wakizashi.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/tiles/wall-cropped.png" type="Texture" id=13]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends RigidBody2D
-
-export var min_speed = 150  # Minimum speed range.
-export var max_speed = 250  # Maximum speed range.
-
-
-func _ready():
-	var mob_types = $AnimatedSprite.frames.get_animation_names()
-	$AnimatedSprite.animation = mob_types[randi() % mob_types.size()]
-	$AnimatedSprite.play()
-
-
-#func _process(delta):
-#	pass
-
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
-"
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "walk",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "swim",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "fly",
-"speed": 3.0
-} ]
-
-[sub_resource type="CapsuleShape2D" id=3]
-radius = 30.7444
-height = 45.7859
-
-[sub_resource type="PackedScene" id=4]
-_bundled = {
-"conn_count": 0,
-"conns": PoolIntArray(  ),
-"editable_instances": [  ],
-"names": PoolStringArray( "Mob", "RigidBody2D", "mobs", "position", "collision_mask", "gravity_scale", "script", "AnimatedSprite", "AnimatedSprite", "scale", "frames", "animation", "frame", "playing", "CollisionShape2D", "CollisionShape2D", "position", "shape", "VisibilityNotifier2D", "VisibilityNotifier2D", "position" ),
-"node_count": 4,
-"node_paths": [ NodePath("."), NodePath("."), NodePath(".") ],
-"nodes": PoolIntArray( -1, -1, 1, 0, -1, 4, 3, 0, 4, 1, 5, 2, 6, 3, 1, 2, 1073741824, 0, 8, 7, -1, 5, 9, 4, 10, 5, 11, 6, 12, 7, 13, 8, 0, 1073741825, 0, 15, 14, -1, 2, 16, 9, 17, 10, 0, 1073741826, 0, 19, 18, -1, 1, 20, 11, 0 ),
-"variants": [ Vector2( 260.573, 419.408 ), 0, 0.0, SubResource( 1 ), Vector2( 0.75, 0.75 ), SubResource( 2 ), "fly", 1, true, Vector2( -3.0874, 0.686134 ), SubResource( 3 ), Vector2( 0.37735, 0.37735 ) ],
-"version": 2
-}
-
-[sub_resource type="Curve2D" id=5]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 307.519, 51.5175, 0, 0, 0, 0, 164.814, 527.2, 0, 0, 0, 0, 535.847, 536.714, 0, 0, 0, 0, 559.631, 313.143 )
-}
-
-[sub_resource type="Curve2D" id=6]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -219.988, 1583.91, 0, 0, 0, 0, -759.988, 1377.91 )
-}
-
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
-[sub_resource type="TileSet" id=8]
+[sub_resource type="TileSet" id=2]
 0/name = "wall-cropped.png 0"
 0/texture = ExtResource( 13 )
 0/tex_offset = Vector2( 0, 0 )
@@ -92,58 +22,53 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 7 )
+0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 7 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-Mob = SubResource( 4 )
-Player = ExtResource( 2 )
-
-[node name="Chaser" parent="." instance=ExtResource( 2 )]
-position = Vector2( -556.549, 1721.97 )
-ControllerRef = ExtResource( 4 )
-CameraRef = null
-Patrol = NodePath("../ChaserPath")
-
-[node name="Npc" parent="." instance=ExtResource( 2 )]
-position = Vector2( 168.918, -59.576 )
-ControllerRef = ExtResource( 5 )
-CameraRef = null
-Patrol = NodePath("../NpcPath")
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-CameraRef = ExtResource( 3 )
-
-[node name="NpcPath" type="Path2D" parent="."]
-curve = SubResource( 5 )
-
-[node name="NpcPatrol" type="PathFollow2D" parent="NpcPath"]
-position = Vector2( 307.519, 51.5175 )
-rotation = 1.86226
-
-[node name="ChaserPath" type="Path2D" parent="."]
-curve = SubResource( 6 )
-
-[node name="ChaserPatrol" type="PathFollow2D" parent="ChaserPath"]
-position = Vector2( -219.989, 1583.91 )
-rotation = -2.77712
-offset = 0.00286865
 
 [node name="TileMap" type="TileMap" parent="." groups=[
 "buildings",
 ]]
-tile_set = SubResource( 8 )
+tile_set = SubResource( 2 )
 collision_layer = 2
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -589839, 0, 0, -589838, 0, 0, -589837, 0, 0, -589836, 0, 0, -589835, 0, 0, -589834, 0, 0, -589833, 0, 0, -589832, 0, 0, -589831, 0, 0, -589830, 0, 0, -589829, 0, 0, -589828, 0, 0, -589827, 0, 0, -589826, 0, 0, -589825, 0, 0, -655360, 0, 0, -655359, 0, 0, -655358, 0, 0, -655357, 0, 0, -655356, 0, 0, -655355, 0, 0, -655354, 0, 0, -655353, 0, 0, -655352, 0, 0, -655351, 0, 0, -655350, 0, 0, -655349, 0, 0, -655348, 0, 0, -655347, 0, 0, -655346, 0, 0, -655345, 0, 0, -655344, 0, 0, -524303, 0, 0, -589808, 0, 0, -458767, 0, 0, -524272, 0, 0, -393231, 0, 0, -458736, 0, 0, -327695, 0, 0, -393200, 0, 0, -262159, 0, 0, -327664, 0, 0, -196623, 0, 0, -262128, 0, 0, -131087, 0, 0, -131076, 0, 0, -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0, -196592, 0, 0, -65551, 0, 0, -131056, 0, 0, -15, 0, 0, -65520, 0, 0, 65521, 0, 0, 16, 0, 0, 131057, 0, 0, 65552, 0, 0, 196593, 0, 0, 131088, 0, 0, 262129, 0, 0, 196624, 0, 0, 327665, 0, 0, 262160, 0, 0, 393201, 0, 0, 327696, 0, 0, 458737, 0, 0, 393232, 0, 0, 524273, 0, 0, 458768, 0, 0, 589809, 0, 0, 524304, 0, 0, 655345, 0, 0, 589840, 0, 0, 720881, 0, 0, 655376, 0, 0, 786417, 0, 0, 720912, 0, 0, 851953, 0, 0, 851954, 0, 0, 851955, 0, 0, 851956, 0, 0, 851957, 0, 0, 851958, 0, 0, 851959, 0, 0, 851960, 0, 0, 851961, 0, 0, 851962, 0, 0, 851963, 0, 0, 851964, 0, 0, 851965, 0, 0, 851966, 0, 0, 851967, 0, 0, 786432, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 851968, 0, 0, 851973, 0, 0, 917504, 0, 0, 917509, 0, 0, 983040, 0, 0, 983045, 0, 0, 1048576, 0, 0, 1048581, 0, 0, 1114112, 0, 0, 1114117, 0, 0, 1179648, 0, 0, 1179653, 0, 0, 1310705, 0, 0, 1310706, 0, 0, 1310707, 0, 0, 1310708, 0, 0, 1310709, 0, 0, 1310710, 0, 0, 1310711, 0, 0, 1310712, 0, 0, 1310713, 0, 0, 1310714, 0, 0, 1310715, 0, 0, 1310716, 0, 0, 1310717, 0, 0, 1310718, 0, 0, 1310719, 0, 0, 1245184, 0, 0, 1245189, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0, 1245193, 0, 0, 1245194, 0, 0, 1245195, 0, 0, 1245196, 0, 0, 1245197, 0, 0, 1245198, 0, 0, 1245199, 0, 0, 1245200, 0, 0, 1245201, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1376241, 0, 0, 1310720, 0, 0, 1310739, 0, 0, 1441777, 0, 0, 1376256, 0, 0, 1376275, 0, 0, 1507313, 0, 0, 1441792, 0, 0, 1441811, 0, 0, 1572849, 0, 0, 1507328, 0, 0, 1507347, 0, 0, 1638385, 0, 0, 1572864, 0, 0, 1572883, 0, 0, 1703921, 0, 0, 1638400, 0, 0, 1638419, 0, 0, 1769457, 0, 0, 1703955, 0, 0, 1834993, 0, 0, 1769491, 0, 0, 1900529, 0, 0, 1835027, 0, 0, 1966065, 0, 0, 1900563, 0, 0, 2031601, 0, 0, 1966099, 0, 0, 2097137, 0, 0, 2031635, 0, 0, 2162673, 0, 0, 2097171, 0, 0, 2228209, 0, 0, 2162707, 0, 0, 2293745, 0, 0, 2228243, 0, 0, 2359281, 0, 0, 2359282, 0, 0, 2359283, 0, 0, 2359284, 0, 0, 2359285, 0, 0, 2359286, 0, 0, 2359287, 0, 0, 2359288, 0, 0, 2359289, 0, 0, 2359290, 0, 0, 2359291, 0, 0, 2359292, 0, 0, 2359293, 0, 0, 2359294, 0, 0, 2359295, 0, 0, 2293760, 0, 0, 2293761, 0, 0, 2293762, 0, 0, 2293763, 0, 0, 2293764, 0, 0, 2293765, 0, 0, 2293766, 0, 0, 2293767, 0, 0, 2293768, 0, 0, 2293769, 0, 0, 2293770, 0, 0, 2293771, 0, 0, 2293772, 0, 0, 2293773, 0, 0, 2293774, 0, 0, 2293775, 0, 0, 2293776, 0, 0, 2293777, 0, 0, 2293778, 0, 0, 2293779, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+CameraRef = ExtResource( 3 )
+
+[node name="InventoryLayer" type="CanvasLayer" parent="."]
+
+[node name="EquippedView" parent="InventoryLayer" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 154.416, 176.295 )
+BackEndPath = NodePath("../../Player/Equipped")
+SlotScene = ExtResource( 4 )
+
+[node name="InventoryView" parent="InventoryLayer" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 379.711, 177.99 )
+BackEndPath = NodePath("../../Player/Inventory")
+SlotScene = ExtResource( 4 )
+
+[node name="Wakizashi" parent="." instance=ExtResource( 6 )]
+position = Vector2( -13.5612, 174.6 )
+z_index = -1
+
+[node name="Wakizashi2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -150.868, 177.99 )
+z_index = -1
+
+[editable path="Player"]

@@ -49,4 +49,4 @@ func _on_Blink_timeout():
 				bodies_in_view.append(body)
 		else:
 			bodies_in_view.erase(body)
-	print("bodies in view: ", bodies_in_view) 
+	# print("bodies in view: ", bodies_in_view) 
