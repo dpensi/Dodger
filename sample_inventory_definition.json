@@ -1,0 +1,6 @@
+{
+    "wakizashi" :{
+        "icon_path" : "res://weapons/Wakizashi64x64.png",
+        "params" :{}
+    }
+}
