@@ -53,7 +53,11 @@ func wait():
 	velocity = move_and_slide(velocity)
 
 func animate():
-	$AnimatedSprite.animation = "walk"
+	if velocity.length() > WalkSpeed:
+		$AnimatedSprite.animation = "run"
+	else:
+		$AnimatedSprite.animation = "walk"
+		
 	if Vector2(-0.2,-0.2) < velocity and velocity <= Vector2(0.2,0.2):
 		$AnimatedSprite.stop()
 	else:
