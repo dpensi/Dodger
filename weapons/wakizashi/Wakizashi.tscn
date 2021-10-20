@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://weapons/Wakizashi.gd" type="Script" id=1]
-[ext_resource path="res://weapons/Wakizashi64x64.png" type="Texture" id=2]
+[ext_resource path="res://weapons/wakizashi/Wakizashi.gd" type="Script" id=1]
+[ext_resource path="res://weapons/wakizashi/Wakizashi64x64.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.8554
@@ -22,6 +22,7 @@ disabled = true
 texture = ExtResource( 2 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 rotation = -0.938987
