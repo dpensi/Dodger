@@ -5,8 +5,8 @@
    x="0px"
    y="0px"
    width="9.9967852mm"
-   height="11.377084mm"
-   viewBox="0 0 37.783126 43.000002"
+   height="11.377083mm"
+   viewBox="0 0 37.783127 42.999998"
    id="svg2528"
    sodipodi:docname="vector_characters (copy).svg"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
@@ -6204,8 +6204,8 @@
      transform="translate(-2914.8469,-492)"
      id="g2286-9"
      inkscape:export-filename="/home/dpensier/godot/dpensi/Dodger/art/topdown-shooter/PNG/Woman Green/womanGreen_rightArm.png"
-     inkscape:export-xdpi="1339.5349"
-     inkscape:export-ydpi="1339.5349">
+     inkscape:export-xdpi="305.8605"
+     inkscape:export-ydpi="305.8605">
     <use
        xlink:href="#Layer0_38_MEMBER_0_FILL"
        id="use2284-1"
@@ -6218,8 +6218,8 @@
      transform="translate(-2914.8469,-492)"
      id="g2290-2"
      inkscape:export-filename="/home/dpensier/godot/dpensi/Dodger/art/topdown-shooter/PNG/Woman Green/womanGreen_rightArm.png"
-     inkscape:export-xdpi="1339.5349"
-     inkscape:export-ydpi="1339.5349">
+     inkscape:export-xdpi="305.8605"
+     inkscape:export-ydpi="305.8605">
     <use
        xlink:href="#Layer0_38_MEMBER_1_FILL"
        id="use2288-7"
@@ -6232,8 +6232,8 @@
      transform="translate(-2914.8469,-492)"
      id="g2294-0"
      inkscape:export-filename="/home/dpensier/godot/dpensi/Dodger/art/topdown-shooter/PNG/Woman Green/womanGreen_rightArm.png"
-     inkscape:export-xdpi="1339.5349"
-     inkscape:export-ydpi="1339.5349">
+     inkscape:export-xdpi="305.8605"
+     inkscape:export-ydpi="305.8605">
     <use
        xlink:href="#Layer0_38_MEMBER_2_FILL"
        id="use2292-9"
@@ -6750,7 +6750,10 @@
   </g>
   <g
      transform="translate(-2973.7081,-1403.0339)"
-     id="g2526">
+     id="g2526"
+     inkscape:export-filename="/home/dpensier/godot/dpensi/Dodger/art/topdown-shooter/Items/Gun.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96">
     <use
        xlink:href="#Layer0_56_FILL"
        id="use2524"
