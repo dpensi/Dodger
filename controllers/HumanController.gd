@@ -12,7 +12,11 @@ func think(_delta):
 	# interact
 	if Input.is_action_just_pressed("ui_action"):
 		process_interaction()
-		
+	
+	# extract item
+	if Input.is_action_just_pressed("ui_draw"):
+		character.toggle_item()
+			
 	# movement
 	if Input.is_action_just_pressed("ui_run"): toggle_run = not toggle_run
 	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -42,8 +46,7 @@ func process_interaction():
 	for no in nearby_objects:
 		if no.is_in_group("interactibles"):
 			character.Inventory.add_item(no)
-			no.hide()
-			no.get_node("InteractionArea/CollisionShape2D").disabled = true
+			no.get_parent().remove_child(no)
 			break
 		else:
 			push_error("InteractionArea non interactible?")
