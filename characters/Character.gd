@@ -13,10 +13,14 @@ onready var Inventory = get_node("Inventory")
 onready var Equipped = get_node("Equipped")
 onready var InteractionArea = get_node("InteractionArea")
 
+enum States { ARMED, UNARMED }
+
 var patrol_follow
 var screen_size  # Size of the game window.
 var camera = null
 var velocity = Vector2.ZERO
+var current_state = States.UNARMED
+var in_hand
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -52,12 +56,35 @@ func wait():
 	velocity = lerp(velocity, Vector2.ZERO, WalkAcceleration) # stop gracefully
 	velocity = move_and_slide(velocity)
 
+func toggle_item():
+	match current_state:
+		States.UNARMED:
+			current_state = States.ARMED
+			if Equipped.grid:
+				var item = Equipped.get_item(Vector2.ZERO)
+				if item:
+					item.position = $RightHand.position
+					item.z_index = 2
+					add_child(item)
+					in_hand = item
+		States.ARMED:
+			current_state = States.UNARMED
+			if in_hand:
+				in_hand.z_index = -1
+				remove_child(in_hand)
+			
 func animate():
+	var animation
 	if velocity.length() > WalkSpeed:
-		$AnimatedSprite.animation = "run"
+		animation = "run"
 	else:
-		$AnimatedSprite.animation = "walk"
-		
+		animation = "walk"
+	
+	if current_state == States.ARMED:
+		animation += "_hold"
+	
+	$AnimatedSprite.animation = animation
+	
 	if Vector2(-0.2,-0.2) < velocity and velocity <= Vector2(0.2,0.2):
 		$AnimatedSprite.stop()
 	else:

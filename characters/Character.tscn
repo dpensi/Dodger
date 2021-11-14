@@ -10,6 +10,11 @@
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "run_hold",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 1 ) ],
 "loop": false,
 "name": "walk",
 "speed": 1.0
@@ -17,6 +22,11 @@ animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": false,
 "name": "run",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "walk_hold",
 "speed": 1.0
 } ]
 
@@ -33,10 +43,13 @@ script = ExtResource( 5 )
 ControllerRef = ExtResource( 6 )
 CameraRef = ExtResource( 7 )
 
+[node name="RightHand" type="Node2D" parent="."]
+position = Vector2( 34.1337, 20.1651 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
-animation = "run"
+animation = "walk_hold"
 
 [node name="InteractionArea" type="Area2D" parent="."]
 visible = false
