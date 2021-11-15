@@ -8,7 +8,8 @@ radius = 18.8554
 height = 48.9153
 
 [node name="Wakizashi" type="RigidBody2D" groups=[
-"interactibles",
+"melee",
+"pickable",
 ]]
 collision_mask = 3
 script = ExtResource( 1 )

@@ -12,6 +12,10 @@ func think(_delta):
 	# interact
 	if Input.is_action_just_pressed("ui_action"):
 		process_interaction()
+
+	# attack
+	if Input.is_action_just_pressed("ui_attack"):
+		character.attack()
 	
 	# extract item
 	if Input.is_action_just_pressed("ui_draw"):
@@ -44,10 +48,10 @@ func process_interaction():
 			nearby_objects.append(na.get_parent())
 
 	for no in nearby_objects:
-		if no.is_in_group("interactibles"):
+		if no.is_in_group("pickable"):
 			character.Inventory.add_item(no)
 			no.get_parent().remove_child(no)
 			break
 		else:
-			push_error("InteractionArea non interactible?")
+			push_error("HumanController.gd: Not implemented yet!")
 	

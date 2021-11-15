@@ -72,7 +72,15 @@ func toggle_item():
 			if in_hand:
 				in_hand.z_index = -1
 				remove_child(in_hand)
+				in_hand = null
 			
+func attack():
+	if current_state == States.UNARMED:
+		return
+	
+	if in_hand and in_hand.is_in_group("fire"):
+		in_hand.fire()
+
 func animate():
 	var animation
 	if velocity.length() > WalkSpeed:
