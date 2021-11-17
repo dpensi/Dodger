@@ -21,6 +21,7 @@ var camera = null
 var velocity = Vector2.ZERO
 var current_state = States.UNARMED
 var in_hand
+var inventory_open = false
 
 func _ready():
 	screen_size = get_viewport_rect().size

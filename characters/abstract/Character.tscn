@@ -2,7 +2,7 @@
 
 [ext_resource path="res://art/topdown-shooter/PNG/Woman Green/womanGreen_stand2.png" type="Texture" id=1]
 [ext_resource path="res://art/topdown-shooter/PNG/Woman Green/womanGreen_rightArm.png" type="Texture" id=2]
-[ext_resource path="res://characters/Character.gd" type="Script" id=5]
+[ext_resource path="res://characters/abstract/Character.gd" type="Script" id=5]
 [ext_resource path="res://controllers/HumanController.tscn" type="PackedScene" id=6]
 [ext_resource path="res://cameras/BasicCamera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Backpack/Backpack.tscn" type="PackedScene" id=25]
