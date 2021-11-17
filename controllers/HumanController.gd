@@ -49,8 +49,7 @@ func process_interaction():
 
 	for no in nearby_objects:
 		if no.is_in_group("pickable"):
-			character.Inventory.add_item(no)
-			no.get_parent().remove_child(no)
+			character.pick_item(no)
 			break
 		else:
 			push_error("HumanController.gd: Not implemented yet!")

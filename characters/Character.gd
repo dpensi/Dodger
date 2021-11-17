@@ -36,8 +36,8 @@ func _process(_delta):
 	animate()	
 
 func _physics_process(delta):
-	Controller.think(delta) # sets input direction
-	Controller.do()
+	Controller.think(delta) # controller plans
+	Controller.do()			# controler executes character's actions
 	
 func start(pos):
 	position = pos
@@ -56,6 +56,10 @@ func wait():
 	velocity = lerp(velocity, Vector2.ZERO, WalkAcceleration) # stop gracefully
 	velocity = move_and_slide(velocity)
 
+func pick_item(item):
+	Inventory.add_item(item)
+	item.get_parent().remove_child(item)
+	
 func toggle_item():
 	match current_state:
 		States.UNARMED:
