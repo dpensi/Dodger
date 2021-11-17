@@ -1,14 +1,18 @@
 extends "res://controllers/AbstractController.gd"
 
-export(int) var OffsetJump = 10
+export(int) var OffsetJump = 30
+export(NodePath) var PatrolPath
+
+onready var patrol_follow : PathFollow2D
 
 func think(_delta):
-	direction = ( character.patrol_follow.position - character.position ).normalized()
-	points_to = character.patrol_follow.position
+	direction = (patrol_follow.global_position - \
+		character.global_position).normalized()
 	
-	if character.position.distance_to(character.patrol_follow.position) < 50:
-		character.patrol_follow.offset += OffsetJump
+	if character.global_position.\
+		distance_to(patrol_follow.global_position) < 50:
+		patrol_follow.offset += OffsetJump
 
 func do():
 	character.walk()
-	character.look_at(character.patrol_follow.position)
+	character.look_at(patrol_follow.global_position)
