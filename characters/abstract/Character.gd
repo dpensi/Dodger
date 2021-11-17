@@ -6,7 +6,6 @@ export var RunSpeed = 500
 export var RunAcceleration = 0.3 
 export(PackedScene) var ControllerRef
 export(PackedScene) var CameraRef
-export(NodePath) var Patrol
 
 onready var Controller = ControllerRef.instance()
 onready var Inventory = get_node("Inventory")
@@ -15,7 +14,6 @@ onready var InteractionArea = get_node("InteractionArea")
 
 enum States { ARMED, UNARMED }
 
-var patrol_follow
 var camera = null
 var velocity = Vector2.ZERO
 var current_state = States.UNARMED
@@ -28,8 +26,6 @@ func _ready():
 		camera = CameraRef.instance() 
 		camera.make_current()
 		add_child(camera)
-	if Patrol:
-		patrol_follow = get_node(Patrol).get_child(0)
 	
 func _process(_delta):
 	animate()	
