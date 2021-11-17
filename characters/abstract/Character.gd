@@ -16,7 +16,6 @@ onready var InteractionArea = get_node("InteractionArea")
 enum States { ARMED, UNARMED }
 
 var patrol_follow
-var screen_size  # Size of the game window.
 var camera = null
 var velocity = Vector2.ZERO
 var current_state = States.UNARMED
@@ -24,7 +23,6 @@ var in_hand
 var inventory_open = false
 
 func _ready():
-	screen_size = get_viewport_rect().size
 	add_child(Controller)
 	if CameraRef != null:
 		camera = CameraRef.instance() 
