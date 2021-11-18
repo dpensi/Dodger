@@ -1,5 +1,7 @@
 extends "res://controllers/BasicAi.gd"
 
+# FollowingDistance for melee attacks set 0, set
+# higher value to stop at a distance from targer
 export var FollowingDistance = 250
 export var BlinkTime = 0.5
 

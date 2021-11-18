@@ -4,6 +4,7 @@ export var WalkSpeed = 200
 export var WalkAcceleration = 0.2
 export var RunSpeed = 500
 export var RunAcceleration = 0.3 
+export var HitPoints = 3 # negative value for instadeath
 export(PackedScene) var ControllerRef
 export(PackedScene) var CameraRef
 
@@ -55,6 +56,11 @@ func pick_item(item):
 	Inventory.add_item(item)
 	item.get_parent().remove_child(item)
 	
+func get_damage(source):
+	HitPoints -= source.Damage
+	if HitPoints < 0:
+		die()
+	
 func toggle_item():
 	match current_state:
 		States.UNARMED:
@@ -79,6 +85,10 @@ func attack():
 	
 	if in_hand and in_hand.is_in_group("fire"):
 		in_hand.fire()
+		
+func die():
+	# TODO make an animation
+	queue_free()
 
 func animate():
 	var animation

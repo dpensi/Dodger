@@ -3,7 +3,7 @@ top-down 2d character
 
 an example of a top-down 2d character that moves with keyboard keys and looks at mouse direction.
 
-# set up
+# Set Up
 There's no easy way in godot to set up dependencies, so git submodules have been used
 
 clone the project with `--recurse-submodule` to download [Backpack](https://github.com/dpensi/Backpack) (the inventory system)
