@@ -10,7 +10,9 @@ radius = 87.946
 radius = 26.8092
 height = 11.7169
 
-[node name="Character" type="KinematicBody2D"]
+[node name="Character" type="KinematicBody2D" groups=[
+"damageable",
+]]
 collision_mask = 3
 script = ExtResource( 5 )
 

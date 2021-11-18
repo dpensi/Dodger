@@ -57,8 +57,8 @@ position = Vector2( 200, 100 )
 curve = SubResource( 3 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 318.91, 18.6686 )
-rotation = 0.0169483
+position = Vector2( 355.508, 49.7192 )
+rotation = -1.94534e-06
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
