@@ -14,6 +14,7 @@ extents = Vector2( 8.90808, 17.4586 )
 "fire",
 "pickable",
 ]]
+z_index = 1
 collision_mask = 3
 script = ExtResource( 2 )
 Bullet = ExtResource( 3 )
