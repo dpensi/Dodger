@@ -13,6 +13,7 @@ height = 11.7169
 [node name="Character" type="KinematicBody2D" groups=[
 "damageable",
 ]]
+z_index = 2
 collision_mask = 3
 script = ExtResource( 5 )
 
@@ -32,6 +33,7 @@ shape = SubResource( 2 )
 
 [node name="FieldOfView" type="Area2D" parent="."]
 visible = false
+monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FieldOfView"]
 visible = false

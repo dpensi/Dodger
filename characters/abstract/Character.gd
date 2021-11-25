@@ -1,5 +1,7 @@
 extends KinematicBody2D 
 
+var utils = preload("res://scripts/utils.gd").new()
+
 export var WalkSpeed = 200
 export var WalkAcceleration = 0.2
 export var RunSpeed = 500
@@ -92,7 +94,7 @@ func die():
 
 func animate():
 	var animation
-	if velocity.length() > WalkSpeed:
+	if utils.almost_gt(velocity.length(), WalkSpeed):
 		animation = "run"
 	else:
 		animation = "walk"

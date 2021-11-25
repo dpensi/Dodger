@@ -46,7 +46,9 @@ func _on_Blink_timeout():
 		var dss = character.get_world_2d().direct_space_state 
 		var intersection = dss.intersect_ray(
 				character.position, body.position, [character])
-		if not intersection.collider.is_in_group("buildings"):
+		if intersection.size() > 0 and \
+			not intersection.collider.is_in_group("buildings"):
+			
 			if not bodies_in_view.has(body):
 				bodies_in_view.append(body)
 		else:
