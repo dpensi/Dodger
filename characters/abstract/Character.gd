@@ -85,8 +85,8 @@ func attack():
 	if current_state == States.UNARMED:
 		return
 	
-	if in_hand and in_hand.is_in_group("fire"):
-		in_hand.fire()
+	if in_hand and in_hand.is_in_group("weapon"):
+		in_hand.attack(null)
 		
 func die():
 	# TODO make an animation

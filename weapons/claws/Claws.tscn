@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://weapons/claws/Claws.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 13.7923
+height = 35.479
+
+[node name="Claws" type="RigidBody2D" groups=[
+"pickable",
+"weapon",
+]]
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[node name="ClawsArea" type="Area2D" parent="."]
+position = Vector2( 30, 0 )
+monitorable = false
+
+[node name="ClawsCollisionShape" type="CollisionShape2D" parent="ClawsArea"]
+shape = SubResource( 1 )
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_AttackCooldownTimer_timeout"]
+[connection signal="body_entered" from="ClawsArea" to="." method="_on_ClawsArea_body_entered"]
