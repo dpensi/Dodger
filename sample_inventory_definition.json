@@ -4,7 +4,7 @@
         "params" :{}
     },
     "gun" :{
-        "icon_path" : "res://weapons/gun/gun64x64.png",
+        "icon_path" : "res://art/topdown-shooter/Items/gun64x64.png",
         "params" :{}
     }
 }

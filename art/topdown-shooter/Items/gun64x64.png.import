@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gun64x64.png-73d66c101f5a0d666ea5c5f137731074.stex"
+path="res://.import/gun64x64.png-9ab433248c3d770cf2cb41b69a456935.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://weapons/gun/gun64x64.png"
-dest_files=[ "res://.import/gun64x64.png-73d66c101f5a0d666ea5c5f137731074.stex" ]
+source_file="res://art/topdown-shooter/Items/gun64x64.png"
+dest_files=[ "res://.import/gun64x64.png-9ab433248c3d770cf2cb41b69a456935.stex" ]
 
 [params]
 
