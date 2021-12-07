@@ -1,4 +1,4 @@
-extends "res://controllers/BasicAi.gd"
+extends "res://controllers/PatrolAi.gd"
 
 # FollowingDistance for melee attacks set 0, set
 # higher value to stop at a distance from targer

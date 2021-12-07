@@ -4,6 +4,12 @@ signal toggle_inventory
 
 var toggle_run = false
 
+# wheel_down is used by the camera to manage the zoom
+var wheel_down 
+
+# wheel_up is used by the camera to manage the zoom
+var wheel_up
+
 # input_enabled disables the all the input except 
 # the ui_ inventory, useful because when the inventory
 # front-end is open you don't want the character to
