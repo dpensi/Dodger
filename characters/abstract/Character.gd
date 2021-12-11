@@ -1,6 +1,6 @@
 extends KinematicBody2D 
 
-var utils = preload("res://scripts/utils.gd").new()
+var utils = preload("res://scripts/Utils.gd").new()
 
 export var WalkSpeed = 200
 export var WalkAcceleration = 0.2
@@ -36,6 +36,10 @@ func _process(_delta):
 func _physics_process(delta):
 	Controller.think(delta) # controller plans
 	Controller.do()			# controler executes character's actions
+	
+func get_last_collision():
+	if get_slide_count() > 0:
+		return get_slide_collision(get_slide_count()-1)
 	
 func start(pos):
 	position = pos

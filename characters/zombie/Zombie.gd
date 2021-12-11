@@ -1,14 +1,13 @@
 extends "res://characters/abstract/Character.gd"
 
-export(NodePath) var PathRef
+export(NodePath) var Navigation
+export(Array, Vector2) var PatrolPoints
 
 var claws_area
 
-func _ready():
-	._ready()
-	
-	Controller.patrol_follow = get_node(PathRef)
-	Controller.FollowingDistance = 0
+func _ready():	
+	Controller.PatrolPoints = PatrolPoints
+	Controller.Navigation = "../" + Navigation
 	
 	in_hand = load("res://weapons/claws/Claws.tscn").instance()
 	claws_area = in_hand.get_node("ClawsArea")
