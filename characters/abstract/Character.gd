@@ -6,6 +6,7 @@ export var WalkSpeed = 200
 export var WalkAcceleration = 0.2
 export var RunSpeed = 500
 export var RunAcceleration = 0.3 
+export var RotationSpeed = 0.3
 export var HitPoints = 3 # negative value for instadeath
 export(PackedScene) var ControllerRef
 export(PackedScene) var CameraRef
@@ -58,6 +59,11 @@ func wait():
 	velocity = lerp(velocity, Vector2.ZERO, WalkAcceleration) # stop gracefully
 	velocity = move_and_slide(velocity)
 
+# override default look_at to smooth rotation
+func look_at(point):
+	var final_rotation = rotation + get_angle_to(point)
+	rotation = lerp(rotation, final_rotation, RotationSpeed)
+	
 func pick_item(item):
 	Inventory.add_item(item)
 	item.get_parent().remove_child(item)
