@@ -90,5 +90,6 @@ func get_walking_path(start, goal):
 		if not is_walkable(point_xy + right):
 			path[i] += Vector3(-WallAvoidance, 0, 0)
 		i += 1
-
+		
+	path.remove(0)
 	return path

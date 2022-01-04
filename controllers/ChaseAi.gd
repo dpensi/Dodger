@@ -55,7 +55,7 @@ func _on_FieldOfView_body_entered(body):
 func _on_FieldOfView_body_exited(body):
 	bodies_in_area.erase(body)
 	bodies_in_view.erase(body)
-	if not bodies_in_view.size():
+	if not bodies_in_view and track_path:
 		track_path = []
 		current_path = []
 

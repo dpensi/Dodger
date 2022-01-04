@@ -11,6 +11,7 @@ onready var path_point = character.global_position
 onready var navigation = get_node(Navigation)
 
 func think(_delta):
+	# yield(get_tree(), "idle_frame") TODO those can replace the if below?
 	if not navigation:
 		push_error("navigation not set, will try again")
 		navigation = get_node(Navigation)

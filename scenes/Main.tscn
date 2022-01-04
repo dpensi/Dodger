@@ -115,6 +115,7 @@ tile_data = PoolIntArray( -2293822, 0, 0, -2293821, 0, 0, -2293820, 0, 0, -22938
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -99.673, 3.02039 )
 z_index = 2
+HitPoints = 10
 
 [node name="FieldOfView" parent="Player" index="4"]
 monitorable = true
@@ -158,6 +159,9 @@ visible = true
 visible = true
 
 [node name="Logger" parent="." instance=ExtResource( 10 )]
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -2746, -1292 )
 
 [editable path="Player"]
 [editable path="Zombie"]
