@@ -2,6 +2,7 @@ extends Camera2D
 
 
 export var ZoomSpeed = 0.2
+export var ZoomStep = 0.5
 export var MinZoom = 0.5
 export var MaxZoom = 2.5
 
@@ -17,11 +18,11 @@ func _process(_delta):
 
 func zoom():
 	if get_parent().Controller.wheel_down: # zoom in 
-		zoom.x -= ZoomSpeed
-		zoom.y -= ZoomSpeed
+		zoom.x = lerp(zoom.x, zoom.x - ZoomStep, ZoomSpeed)
+		zoom.y = lerp(zoom.y, zoom.y - ZoomStep, ZoomSpeed)
 	if get_parent().Controller.wheel_up: # zoom out
-		zoom.x += ZoomSpeed
-		zoom.y += ZoomSpeed
+		zoom.x = lerp(zoom.x, zoom.x + ZoomStep, ZoomSpeed)
+		zoom.y = lerp(zoom.y, zoom.y + ZoomStep, ZoomSpeed)
 	
 	zoom.x = clamp(zoom.x, MinZoom, MaxZoom)
 	zoom.y = clamp(zoom.y, MinZoom, MaxZoom)
