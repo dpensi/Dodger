@@ -40,8 +40,8 @@ func think(_delta):
 		direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		
 		# camera
-		wheel_down = Input.is_action_just_released("ui_zoom_in")
-		wheel_up = Input.is_action_just_released("ui_zoom_out")
+		wheel_up = Input.is_action_just_released("ui_zoom_in")
+		wheel_down = Input.is_action_just_released("ui_zoom_out")
 		points_to = character.get_global_mouse_position()
 
 func do():

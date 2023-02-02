@@ -28,5 +28,11 @@ func v2_almost_eq(vec1, vec2, epsilon=0.1):
 func v3_to_v2(vec3):
 	return Vector2(vec3.x, vec3.y)
 
-func v2_to_v3(vec2):
-	return Vector3(vec2.x, vec2.y, 0)
+func v2_to_v3(vec2, z = 0):
+	return Vector3(vec2.x, vec2.y, z)
+
+# Thanks to parapixel,
+# takes a normalized vector, rotates it randomly and then scales it randomly
+# the result is summed to v2 and than returned	
+static func vector2_add_random_deviation(v2: Vector2, radius) -> Vector2:
+	return v2 + Vector2.RIGHT.rotated(randf() * TAU) * randf() * radius

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://characters/zombie/Zombie.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/topdown-shooter/Tilesheet/tilesheet_complete.png" type="Texture" id=7]
 [ext_resource path="res://weapons/gun/Gun.tscn" type="PackedScene" id=8]
-[ext_resource path="res://controllers/PatrolAi.tscn" type="PackedScene" id=9]
+[ext_resource path="res://controllers/LobotomyAi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Logger.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -60,6 +60,11 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 } ]
 1/z_index = 0
 
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 1, 1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 
@@ -81,29 +86,24 @@ HitPoints = 10
 [node name="FieldOfView" parent="Player" index="4"]
 monitorable = true
 
+[node name="Blood" parent="Player" index="5"]
+emitting = false
+lifetime = 1.0
+one_shot = true
+explosiveness = 1.0
+fract_delta = false
+visibility_rect = Rect2( 0, -4.48881e-06, 0, 4.48881e-06 )
+process_material = SubResource( 3 )
+
 [node name="Zombie" parent="." instance=ExtResource( 6 )]
-position = Vector2( 217.349, 39.9619 )
-ControllerRef = ExtResource( 9 )
+position = Vector2( 217, 48 )
 Navigation = NodePath("../LevelNavigation")
 PatrolPoints = [ Vector2( 290, 820 ), Vector2( 600, -25 ) ]
 
-[node name="InventoryLayer" type="CanvasLayer" parent="."]
-
-[node name="EquippedView" parent="InventoryLayer" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 154.416, 176.295 )
-BackEndPath = NodePath("../../Player/Equipped")
-SlotScene = ExtResource( 4 )
-
-[node name="InventoryView" parent="InventoryLayer" instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 379.711, 177.99 )
-BackEndPath = NodePath("../../Player/Inventory")
-SlotScene = ExtResource( 4 )
-
-[node name="Gun" parent="." instance=ExtResource( 8 )]
-position = Vector2( -97.5556, 112.095 )
-z_index = 0
+[node name="Blood" parent="Zombie" index="5"]
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 3 )
 
 [node name="Zombie2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -226.274, -624.517 )
@@ -119,11 +119,53 @@ visible = true
 [node name="CollisionPolygon2D" parent="Zombie2/FieldOfView" index="0"]
 visible = true
 
+[node name="Blood" parent="Zombie2" index="5"]
+emitting = true
+explosiveness = 1.0
+process_material = SubResource( 3 )
+
+[node name="Zombie3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -968, -485 )
+rotation = 2.59014
+Navigation = NodePath("../LevelNavigation")
+PatrolPoints = [ Vector2( -1160, -310 ), Vector2( -2440, -299 ) ]
+
+[node name="Blood" parent="Zombie3" index="5"]
+one_shot = true
+
+[node name="Zombie4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -466, 326 )
+ControllerRef = ExtResource( 9 )
+
+[node name="Blood" parent="Zombie4" index="5"]
+one_shot = true
+visibility_rect = Rect2( 0, 0, 0, 0 )
+
+[node name="Gun" parent="." instance=ExtResource( 8 )]
+position = Vector2( -97.5556, 112.095 )
+z_index = 0
+
+[node name="InventoryLayer" type="CanvasLayer" parent="."]
+
+[node name="EquippedView" parent="InventoryLayer" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 154.416, 176.295 )
+BackEndPath = NodePath("../../Player/Equipped")
+SlotScene = ExtResource( 4 )
+
+[node name="InventoryView" parent="InventoryLayer" instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 379.711, 177.99 )
+BackEndPath = NodePath("../../Player/Inventory")
+SlotScene = ExtResource( 4 )
+
 [node name="Logger" parent="." instance=ExtResource( 10 )]
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( -2746, -1292 )
+position = Vector2( -2440, -299 )
 
 [editable path="Player"]
 [editable path="Zombie"]
 [editable path="Zombie2"]
+[editable path="Zombie3"]
+[editable path="Zombie4"]

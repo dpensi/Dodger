@@ -6,8 +6,13 @@ export(Array, Vector2) var PatrolPoints
 var claws_area
 
 func _ready():	
-	Controller.PatrolPoints = PatrolPoints
-	Controller.Navigation = "../" + Navigation
+	if PatrolPoints and Navigation:
+		Controller.PatrolPoints = PatrolPoints
+		Controller.Navigation = "../" + Navigation
+	else:
+		var warning = 	"Patrol Points and Navigation not set,"
+		warning += 		" is this intended?"
+		push_warning(warning)
 	
 	in_hand = load("res://weapons/claws/Claws.tscn").instance()
 	claws_area = in_hand.get_node("ClawsArea")
