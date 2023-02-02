@@ -15,6 +15,7 @@ onready var Controller = ControllerRef.instance()
 onready var Inventory = get_node("Inventory")
 onready var Equipped = get_node("Equipped")
 onready var InteractionArea = get_node("InteractionArea")
+onready var Blood = get_node("Blood")
 
 enum States { ARMED, UNARMED }
 
@@ -70,6 +71,7 @@ func pick_item(item):
 	
 func get_damage(source):
 	HitPoints -= source.Damage
+	bleed(source.get_rotation())
 	if HitPoints < 0:
 		die()
 	
@@ -97,7 +99,14 @@ func attack():
 	
 	if in_hand and in_hand.is_in_group("weapon"):
 		in_hand.attack(null)
-		
+
+# direction is in radians
+func bleed(direction):
+	Blood.process_material.direction = \
+		Vector3(cos(direction), sin(direction), 0)
+	Blood.emitting = true
+
+	
 func die():
 	# TODO make an animation
 	queue_free()
@@ -119,12 +128,10 @@ func animate():
 	else:
 		$AnimatedSprite.play()
 
+# Override those functions in the script that extends this abstract 
 func _on_FieldOfView_body_entered(_body):
-	# print("i can see ", body.name)
 	pass
-
 func _on_FieldOfView_body_exited(_body):
-	# print("can't see ", body.name, " anymore")
 	pass
 
 # force collision detection during rotation

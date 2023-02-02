@@ -40,8 +40,8 @@ func think(_delta):
 		direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		
 		# camera
-		wheel_down = Input.is_action_pressed("ui_zoom_in")
-		wheel_up = Input.is_action_pressed("ui_zoom_out")
+		wheel_up = Input.is_action_just_released("ui_zoom_in")
+		wheel_down = Input.is_action_just_released("ui_zoom_out")
 		points_to = character.get_global_mouse_position()
 
 func do():
@@ -57,7 +57,7 @@ func do():
 	character.look_at(points_to)
 
 
-# proces the interaction with selected in-game object
+# process the interaction with selected in-game object
 # like open door, get item, talk to npc, etc...
 func process_interaction():
 	var nearby_areas = character.InteractionArea.get_overlapping_areas()
@@ -72,4 +72,3 @@ func process_interaction():
 			break
 		else:
 			push_error("HumanController.gd: Not implemented yet!")
-	
