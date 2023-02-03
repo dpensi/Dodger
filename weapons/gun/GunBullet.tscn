@@ -6,21 +6,22 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 2.06612
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="KinematicBody2D"]
 z_index = 2
 collision_layer = 3
 collision_mask = 3
-input_pickable = false
 script = ExtResource( 2 )
 Speed = 1500.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 3, 3 )
-shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 3.14159
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 1 )
 
-[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="AreaShape" type="CollisionShape2D" parent="DamageArea"]
+scale = Vector2( 3, 3 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_Bullet_body_entered"]

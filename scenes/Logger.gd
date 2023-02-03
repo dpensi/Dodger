@@ -4,10 +4,10 @@ export(bool) var Enabled = true
 
 const NL = '\n'
 
-var utils = load("res://scripts/Utils.gd").new()
+var utils = preload("res://scripts/Utils.gd").new()
 var monitored = []
 
-onready var pointer = load("res://art/logger/EditorPositionPrevious.png")
+onready var pointer = preload("res://art/logger/EditorPositionPrevious.png")
 
 func _ready():
 	$Label.visible = Enabled

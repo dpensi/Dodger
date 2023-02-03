@@ -3,7 +3,7 @@ extends Node
 export(NodePath) var PavementTileMap
 export(int) var WallAvoidance = 15
 
-var utils = load("res://scripts/Utils.gd").new()
+var utils = preload("res://scripts/Utils.gd").new()
 var astar = AStar.new()
 # stores tile position -> astar node id
 var position_id_map = {}
