@@ -14,7 +14,7 @@ func _ready():
 		warning += 		" is this intended?"
 		push_warning(warning)
 	
-	in_hand = load("res://weapons/claws/Claws.tscn").instance()
+	in_hand = preload("res://weapons/claws/Claws.tscn").instance()
 	claws_area = in_hand.get_node("ClawsArea")
 	add_child(in_hand)
 	

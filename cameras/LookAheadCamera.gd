@@ -2,7 +2,7 @@ extends "res://cameras/BasicCamera.gd"
 
 export var moving_speed = 6
 
-var utils = load("res://scripts/Utils.gd").new()
+var utils = preload("res://scripts/Utils.gd").new()
 
 func _ready():
 	get_viewport().warp_mouse(player.position)

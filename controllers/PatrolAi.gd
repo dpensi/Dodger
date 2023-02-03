@@ -3,7 +3,7 @@ extends "res://controllers/AbstractController.gd"
 export(Array, Vector2) var PatrolPoints
 export(NodePath) var Navigation
 
-var utils = load("res://scripts/Utils.gd").new()
+var utils = preload("res://scripts/Utils.gd").new()
 var current_path = []
 var current_patrol_point = 0
  

@@ -120,7 +120,7 @@ visible = true
 visible = true
 
 [node name="Blood" parent="Zombie2" index="5"]
-emitting = true
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 3 )
 
@@ -135,6 +135,7 @@ one_shot = true
 
 [node name="Zombie4" parent="." instance=ExtResource( 6 )]
 position = Vector2( -466, 326 )
+HitPoints = 10
 ControllerRef = ExtResource( 9 )
 
 [node name="Blood" parent="Zombie4" index="5"]
