@@ -4,4 +4,6 @@
 
 [node name="LookAheadCamera" type="Camera2D"]
 script = ExtResource( 1 )
+ZoomSpeed = 0.5
+MaxZoom = 5.0
 moving_speed = 10
