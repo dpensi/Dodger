@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://art/music/aim_to_head-kalama.ogg" type="AudioStream" id=1]
+
+[node name="BackGroundMusic" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )

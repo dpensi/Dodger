@@ -25,4 +25,4 @@ The project already provides an example game.
 
 # Credits
 
-music hogfi_maybe.ogg made by Vojvodinosaurus under [this licence](https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode.txt)
+music from [Aim To Head Mix](https://www.youtube.com/@aimtoheadmix1915)

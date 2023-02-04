@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/aim_to_head-kalama.ogg-0a042ade0aceffa828be3edbbc63982d.oggstr"
+
+[deps]
+
+source_file="res://art/music/aim_to_head-kalama.ogg"
+dest_files=[ "res://.import/aim_to_head-kalama.ogg-0a042ade0aceffa828be3edbbc63982d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
