@@ -10,12 +10,13 @@ export var RotationSpeed = 0.3
 export var HitPoints = 3 # negative value for instadeath
 export(PackedScene) var ControllerRef
 export(PackedScene) var CameraRef
+export(PackedScene) var Blood
 
 onready var Controller = ControllerRef.instance()
 onready var Inventory = get_node("Inventory")
 onready var Equipped = get_node("Equipped")
 onready var InteractionArea = get_node("InteractionArea")
-onready var Blood = get_node("Blood")
+
 
 enum States { ARMED, UNARMED }
 
@@ -102,9 +103,11 @@ func attack():
 
 # direction is in radians
 func bleed(direction):
-	Blood.process_material.direction = \
+	var drops = Blood.instance()
+	add_child(drops)
+	drops.process_material.direction = \
 		Vector3(cos(direction), sin(direction), 0)
-	Blood.emitting = true
+	drops.emitting = true
 
 	
 func die():

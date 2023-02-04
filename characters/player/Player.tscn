@@ -6,7 +6,7 @@
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=4]
 [ext_resource path="res://cameras/LookAheadCamera.tscn" type="PackedScene" id=5]
 [ext_resource path="res://controllers/HumanController.tscn" type="PackedScene" id=6]
-[ext_resource path="res://art/topdown-shooter/PNG/Woman Green/blood_drop_red.png" type="Texture" id=7]
+[ext_resource path="res://characters/player/BloodRed.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,13 +36,9 @@ z_index = 1
 script = ExtResource( 4 )
 ControllerRef = ExtResource( 6 )
 CameraRef = ExtResource( 5 )
+Blood = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "walk_hold"
-
-[node name="Blood" parent="." index="5"]
-visible = true
-emitting = true
-texture = ExtResource( 7 )
